@@ -1,9 +1,6 @@
 import exceptions.BreedNotFoundException;
 import model.Breed;
 import model.Dog;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import service.AdoptionCenterService;
 
 import java.util.ArrayList;
@@ -14,7 +11,7 @@ public class DogTestClass {
     private static List <Dog> doggos = new ArrayList();
     private  static AdoptionCenterService adoptionCenterService;
 
-    @BeforeAll
+    @BeforeClass
     public static  void maketestDogs(){
         doggo = new Dog("Pearl", 2, true,"poodle");
 
@@ -27,13 +24,13 @@ public class DogTestClass {
 
     @Test
      public void testGetName(){
-        Assertions.assertEquals("Pear", doggo.getName());
+        Assert.assertEquals("Pear", doggo.getName());
     }
 
     @Test
     public void dogBreedException(){
 
-        Assertions.assertThrows(BreedNotFoundException.class, ()-> adoptionCenterService.getDogsOfBreed(doggos, "Dalmatian"));
+        Assert.assertThrows(BreedNotFoundException.class, ()-> adoptionCenterService.getDogsOfBreed(doggos, "Dalmatian"));
 
         
     }
@@ -42,14 +39,14 @@ public class DogTestClass {
     public void vaccinatedDogs(){
 
         List<Dog> vaccinatedDoggos = adoptionCenterService.getAllVaccinatedDogs(doggos);
-        Assertions.assertNotEquals(3, vaccinatedDoggos.size());
+        Assert.assertNotEquals(3, vaccinatedDoggos.size());
 
     }
 
     @Test
     public void getAge(){
 
-        Assertions.assertEquals(11, adoptionCenterService.getAgeInHumanYears(doggo));
+        Assert.assertEquals(11, adoptionCenterService.getAgeInHumanYears(doggo));
 
     }
 
